@@ -282,6 +282,176 @@
         margin-bottom: 10px;
       }
     }
+
+    .timeline-container {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  padding: 25px;
+  margin: 20px 0;
+}
+
+.timeline-dates {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.start-date, .end-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+.date-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 15px rgba(255, 64, 129, 0.3);
+}
+
+.date-circle.start {
+  background: linear-gradient(45deg, #ff9a9e, #fecfef);
+  animation: heartbeat 2s ease-in-out infinite;
+}
+
+.date-circle.current {
+  background: linear-gradient(45deg, #ff4081, #ff80ab);
+  animation: celebrate 3s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes celebrate {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.1) rotate(5deg); }
+  75% { transform: scale(1.1) rotate(-5deg); }
+}
+
+.date-text {
+  text-align: center;
+  font-size: 0.9em;
+  color: #ff4081;
+}
+
+.timeline-progress {
+  flex: 1;
+  margin: 0 30px;
+  position: relative;
+}
+
+.progress-bar {
+  height: 8px;
+  background: rgba(255, 192, 203, 0.3);
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff9a9e, #ff4081, #ff80ab);
+  border-radius: 10px;
+  width: 100%;
+  animation: progressGlow 3s ease-in-out infinite;
+}
+
+@keyframes progressGlow {
+  0%, 100% { box-shadow: 0 0 10px rgba(255, 64, 129, 0.5); }
+  50% { box-shadow: 0 0 20px rgba(255, 64, 129, 0.8); }
+}
+
+.progress-months {
+  position: absolute;
+  top: -25px;
+  width: 100%;
+  height: 20px;
+}
+
+.month-marker {
+  position: absolute;
+  font-size: 0.7em;
+  color: #ff4081;
+  font-weight: bold;
+  transform: translateX(-50%);
+  animation: monthPulse 4s ease-in-out infinite;
+}
+
+@keyframes monthPulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; transform: translateX(-50%) translateY(-2px); }
+}
+
+.milestone-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 2px solid rgba(255, 192, 203, 0.3);
+}
+
+.stat-item {
+  text-align: center;
+  animation: statFloat 3s ease-in-out infinite;
+}
+
+.stat-item:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.stat-item:nth-child(3) {
+  animation-delay: 1s;
+}
+
+@keyframes statFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.stat-number {
+  font-size: 2em;
+  font-weight: bold;
+  color: #ff4081;
+  text-shadow: 2px 2px 4px rgba(255, 64, 129, 0.3);
+}
+
+.stat-label {
+  font-size: 0.9em;
+  color: #d81b60;
+  margin-top: 5px;
+}
+
+/* Responsive design for timeline */
+@media (max-width: 768px) {
+  .timeline-dates {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .timeline-progress {
+    margin: 20px 0;
+    order: 3;
+  }
+  
+  .progress-months {
+    display: none;
+  }
+  
+  .milestone-stats {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
   </style>
 </head>
 <body>
@@ -302,11 +472,62 @@
     
     <!-- Countdown -->
     <div class="countdown">
-      <div>🎉 10 Amazing Months Together! 🎉</div>
-      <div style="font-size: 0.9em; margin-top: 10px;">
-        And counting... ∞
+  <div style="margin-bottom: 20px;">
+    <h4 style="margin-bottom: 15px;">Our Love Journey Timeline 💕</h4>
+  </div>
+  
+  <div class="timeline-container">
+    <div class="timeline-dates">
+      <div class="start-date">
+        <div class="date-circle start">💖</div>
+        <div class="date-text">
+          <strong>September 10, 2024</strong><br>
+          <small>Our Beginning</small>
+        </div>
+      </div>
+      
+      <div class="timeline-progress">
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+          <div class="progress-months">
+            <span class="month-marker" style="left: 10%;">Oct</span>
+            <span class="month-marker" style="left: 20%;">Nov</span>
+            <span class="month-marker" style="left: 30%;">Dec</span>
+            <span class="month-marker" style="left: 40%;">Jan</span>
+            <span class="month-marker" style="left: 50%;">Feb</span>
+            <span class="month-marker" style="left: 60%;">Mar</span>
+            <span class="month-marker" style="left: 70%;">Apr</span>
+            <span class="month-marker" style="left: 80%;">May</span>
+            <span class="month-marker" style="left: 90%;">Jun</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="end-date">
+        <div class="date-circle current">🎉</div>
+        <div class="date-text">
+          <strong>July 10, 2025</strong><br>
+          <small>10 Months Strong!</small>
+        </div>
       </div>
     </div>
+    
+    <div class="milestone-stats">
+      <div class="stat-item">
+        <div class="stat-number">10</div>
+        <div class="stat-label">Months</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">303</div>
+        <div class="stat-label">Days</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">∞</div>
+        <div class="stat-label">Love</div>
+      </div>
+    </div>
+  </div>
+</div>
 
     <div class="image-container d-flex justify-content-center flex-wrap">
       <img src="image1.png" alt="Bubu and Dudu" onclick="this.style.transform='rotateY(360deg) scale(1.2)'; setTimeout(() => this.style.transform='', 1000)">
@@ -318,7 +539,7 @@
       <p>To more kain, asaran, and unlimited kisses and hugs together! 💕</p>
       <p>Thank you for being my partner in everything.</p>
       <div style="font-size: 1.5em; margin-top: 20px;">
-        I love you to the universe and back! 🌙⭐
+        I love you to the universe and back! ⭐
       </div>
     </div>
 
